@@ -1,6 +1,6 @@
 'use strict';
 
-const xArray = ['sheeeeesh', 62, 'glek', 64, -7, 4, 'grek', true, 84, 42];
+const xArray = ['sh', '62', 'glek', 64, -7, undefined, 4, 'grek', true, 84, 42];
 
 let xArraySum = 0;
 let xArrayMin, xArrayMax;
