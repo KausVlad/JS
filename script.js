@@ -12,6 +12,10 @@ if ((firstNumber && secondNumber) !== '') {
     if (confirm('are you sure about that?')) {
       alert(Number(firstNumber) - Number(secondNumber));
     }
+  } else {
+    alert(
+      `result of subtraction: ${Number(firstNumber) - Number(secondNumber)}`
+    );
   }
 
   alert(
