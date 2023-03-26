@@ -1,0 +1,138 @@
+/*** The new CSS Reset - version 1.2.0 (last updated 23.7.2021) ***/
+/* Remove all the styles of the "User-Agent-Stylesheet", except for the 'display' property */
+*:where(:not(iframe, canvas, img, svg, video):not(svg *)) {
+  all: unset;
+  display: revert;
+}
+
+/* Preferred box-sizing value */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/*
+  Remove list styles (bullets/numbers)
+  in case you use it with normalize.css
+*/
+ol,
+ul {
+  list-style: none;
+}
+
+/* For images to not be able to exceed their container */
+img {
+  max-width: 100%;
+}
+
+/* Removes spacing between cells in tables */
+table {
+  border-collapse: collapse;
+}
+
+/* Revert the 'white-space' property for textarea elements on Safari */
+textarea {
+  white-space: revert;
+}
+
+.container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgb(5, 191, 255);
+  background: linear-gradient(0deg, rgb(5, 191, 255) 0%, rgb(30, 255, 245) 57%);
+}
+
+.calculator {
+  padding: 1rem;
+  box-shadow: 0px 0px 60px 3px #0c2340;
+  border-radius: 70px;
+  margin: 1rem;
+  background: #7fffd4;
+  max-width: 40rem;
+  width: 100%;
+  max-height: 40rem;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 0.3fr repeat(2, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  grid-gap: 1rem 1rem;
+  grid-template-areas: "first-number math-sign second-number result" "info-panel info-panel info-panel info-panel-math" "first-prompt first-prompt first-prompt sum" "first-prompt first-prompt first-prompt subtract" "second-prompt second-prompt second-prompt multiply" "second-prompt second-prompt second-prompt divide";
+}
+
+.first-number {
+  background: red;
+  grid-area: first-number;
+  border-radius: 50px 0px 0px 0px;
+}
+
+.second-number {
+  background: blue;
+  grid-area: second-number;
+}
+
+.math-sign {
+  background: orange;
+  grid-area: math-sign;
+}
+
+.result {
+  background: green;
+  grid-area: result;
+  border-radius: 0px 50px 0px 0px;
+}
+
+.info-panel {
+  grid-area: info-panel;
+  background: yellow;
+}
+
+.info-panel-math {
+  grid-area: info-panel-math;
+  background: blueviolet;
+}
+
+.first-prompt {
+  grid-area: first-prompt;
+  background: orange;
+}
+
+.second-prompt {
+  grid-area: second-prompt;
+  background: pink;
+  border-radius: 0px 0px 0px 50px;
+}
+
+.sum {
+  grid-area: sum;
+  background: purple;
+}
+
+.subtract {
+  grid-area: subtract;
+  background: red;
+}
+
+.multiply {
+  grid-area: multiply;
+  background: green;
+}
+
+.divide {
+  grid-area: divide;
+  background: blue;
+  border-radius: 0px 0px 50px 0px;
+}
+
+.btn {
+  cursor: pointer;
+  text-align: center;
+}
+
+.inf {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}/*# sourceMappingURL=style.css.map */
