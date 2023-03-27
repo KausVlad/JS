@@ -18,7 +18,8 @@ let bigBrainCalc = {
   secondNumber: null,
   newFirstNumber: null,
   newSecondNumber: null,
-  errorMassage: `It is possible that one or two values are not a number, BB and GG!! Press F to pay respect!!`,
+  resultNumber: null,
+  errorMassage: `NuN`,
   ask() {
     // old method
     this.firstNumber = prompt('Enter first number');
@@ -44,23 +45,22 @@ let bigBrainCalc = {
   },
   sum() {
     return this.numberChecking()
-      ? this.newFirstNumber + this.newSecondNumber
+      ? (this.resultNumber = this.newFirstNumber + this.newSecondNumber)
       : this.errorMassage;
   },
   mul() {
     return this.numberChecking()
-      ? this.newFirstNumber * this.newSecondNumber
+      ? (this.resultNumber = this.newFirstNumber * this.newSecondNumber)
       : this.errorMassage;
   },
-  //bonus
   subtract() {
     if (this.numberChecking()) {
       if (this.newFirstNumber < this.newSecondNumber) {
         return confirm('are you sure about that?')
-          ? this.newFirstNumber - this.newSecondNumber
+          ? (this.resultNumber = this.newFirstNumber - this.newSecondNumber)
           : 'the result will be less than 0 and not acceptable to you';
       } else {
-        return this.newFirstNumber - this.newSecondNumber;
+        return (this.resultNumber = this.newFirstNumber - this.newSecondNumber);
       }
     }
     return this.errorMassage;
@@ -69,11 +69,12 @@ let bigBrainCalc = {
     if (this.numberChecking()) {
       return this.newSecondNumber === 0
         ? 'cannot be divided by zero'
-        : this.newFirstNumber / this.newSecondNumber;
+        : (this.resultNumber = (
+            this.newFirstNumber / this.newSecondNumber
+          ).toFixed(2));
     }
     return this.errorMassage;
   },
-  ///extra bonus
   mathSelector() {
     this.ask();
     const operationType = prompt('Enter operation type: +, -, *, /');
@@ -90,6 +91,17 @@ let bigBrainCalc = {
       alert('invalid operation');
     }
   },
+  minusPlusCheck() {
+    this.resultNumber > 0
+      ? (result.style.color = `hsl(120, 100%, ${Math.min(
+          Math.max(this.resultNumber / 10, 20),
+          80
+        )}%)`)
+      : (result.style.color = `hsl(0, 100%, ${Math.min(
+          Math.max(-this.resultNumber / 10, 20),
+          90
+        )}%)`);
+  },
 };
 
 firstPrompt.addEventListener('click', () => {
@@ -102,17 +114,21 @@ secondPrompt.addEventListener('click', () => {
 });
 sum.addEventListener('click', () => {
   result.textContent = bigBrainCalc.sum();
+  bigBrainCalc.minusPlusCheck();
   mathSign.textContent = '+';
 });
 multiply.addEventListener('click', () => {
   result.textContent = bigBrainCalc.mul();
+  bigBrainCalc.minusPlusCheck();
   mathSign.textContent = '*';
 });
 subtract.addEventListener('click', () => {
   result.textContent = bigBrainCalc.subtract();
+  bigBrainCalc.minusPlusCheck();
   mathSign.textContent = '-';
 });
 divide.addEventListener('click', () => {
   result.textContent = bigBrainCalc.divide();
+  bigBrainCalc.minusPlusCheck();
   mathSign.textContent = '/';
 });

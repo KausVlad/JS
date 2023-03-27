@@ -47,7 +47,7 @@ textarea {
 
 .calculator {
   padding: 1rem;
-  box-shadow: 0px 0px 60px 3px #0c2340;
+  box-shadow: -3px 3px 60px 3px #0c2340;
   border-radius: 70px;
   margin: 1rem;
   background: #7fffd4;
@@ -63,7 +63,7 @@ textarea {
 }
 
 .first-number {
-  background: red;
+  background: hsl(0, 100%, 50%);
   grid-area: first-number;
   border-radius: 50px 0px 0px 0px;
 }
@@ -86,7 +86,7 @@ textarea {
 
 .info-panel {
   grid-area: info-panel;
-  background: yellow;
+  background: rgb(255, 255, 0);
 }
 
 .info-panel-math {
@@ -112,12 +112,12 @@ textarea {
 
 .subtract {
   grid-area: subtract;
-  background: red;
+  background: rgb(255, 0, 0);
 }
 
 .multiply {
   grid-area: multiply;
-  background: green;
+  background: hsl(120, 100%, 25%);
 }
 
 .divide {
@@ -126,13 +126,50 @@ textarea {
   border-radius: 0px 0px 50px 0px;
 }
 
+.bnt-big {
+  background: rgba(5, 193, 255, 0.596);
+  box-shadow: none;
+  transition: box-shadow 0.2s;
+}
+
+.bnt-big:hover {
+  box-shadow: -3px 3px 10px 0px #0c2340;
+}
+
+.bnt-big:active {
+  box-shadow: none;
+}
+
+.btn-small {
+  background: rgba(99, 216, 255, 0.576);
+  box-shadow: none;
+  transition: box-shadow 0.2s;
+}
+
+.btn-small:hover {
+  box-shadow: -3px 3px 10px 0px #0c2340;
+}
+
+.btn-small:active {
+  box-shadow: none;
+}
+
 .btn {
+  font-family: sans-serif;
   cursor: pointer;
   text-align: center;
+  font-size: 1.6rem;
+  font-weight: bolder;
+  text-transform: uppercase;
 }
 
 .inf {
+  font-family: sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
+  background: rgba(255, 255, 255, 0.6078431373);
+  font-size: 2rem;
+  font-weight: bold;
+  padding: 0.6rem;
 }/*# sourceMappingURL=style.css.map */
