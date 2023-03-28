@@ -63,7 +63,7 @@ body {
   grid-template-columns: 1fr 0.3fr repeat(2, 1fr);
   grid-template-rows: repeat(6, 1fr);
   grid-gap: 1rem 1rem;
-  grid-template-areas: "first-number math-sign second-number result" "array-inp array-inp array-inp array-calc" "first-prompt first-prompt first-prompt sum" "first-prompt first-prompt first-prompt subtract" "second-prompt second-prompt second-prompt multiply" "second-prompt second-prompt second-prompt divide";
+  grid-template-areas: "first-number math-sign second-number result" "array-inp array-inp array-inp array-calc" "keypad keypad keypad keypad-sign" "keypad keypad keypad keypad-sign" "keypad keypad keypad keypad-sign" "keypad keypad keypad keypad-sign";
 }
 
 .first-number {
@@ -106,72 +106,61 @@ body {
   cursor: pointer;
 }
 
-.first-prompt {
-  grid-area: first-prompt;
-  background: orange;
+button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.second-prompt {
-  grid-area: second-prompt;
-  background: pink;
+.keypad {
+  grid-area: keypad;
   border-radius: 0px 0px 0px 50px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  grid-gap: 1rem 1rem;
+  overflow: hidden;
+}
+.keypad button {
+  background: green;
 }
 
-.sum {
-  grid-area: sum;
-  background: purple;
-}
-
-.subtract {
-  grid-area: subtract;
-  background: rgb(255, 0, 0);
-}
-
-.multiply {
-  grid-area: multiply;
-  background: hsl(120, 100%, 25%);
-}
-
-.divide {
-  grid-area: divide;
-  background: blue;
+.keypad-sign {
+  overflow: hidden;
+  grid-area: keypad-sign;
   border-radius: 0px 0px 50px 0px;
+  display: grid;
+  grid-gap: 1rem 1rem;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  grid-template-areas: "addition subtraction" "multiplication division" "equal equal" "delete delete";
+}
+.keypad-sign button {
+  background: rgb(87, 128, 0);
 }
 
-.bnt-big {
-  background: rgba(5, 193, 255, 0.596);
-  box-shadow: none;
-  transition: box-shadow 0.2s;
+.sign--1 {
+  grid-area: addition;
 }
 
-.bnt-big:hover {
-  box-shadow: -3px 3px 10px 0px #0c2340;
+.sign--2 {
+  grid-area: subtraction;
 }
 
-.bnt-big:active {
-  box-shadow: none;
+.sign--3 {
+  grid-area: multiplication;
 }
 
-.btn-small {
-  background: rgba(99, 216, 255, 0.576);
-  box-shadow: none;
-  transition: box-shadow 0.2s;
+.sign--4 {
+  grid-area: division;
 }
 
-.btn-small:hover {
-  box-shadow: -3px 3px 10px 0px #0c2340;
+.sign--5 {
+  grid-area: equal;
 }
 
-.btn-small:active {
-  box-shadow: none;
-}
-
-.btn {
-  cursor: pointer;
-  text-align: center;
-  font-size: 1.6rem;
-  font-weight: bolder;
-  text-transform: uppercase;
+.sign--6 {
+  grid-area: delete;
 }
 
 .inf {

@@ -2,19 +2,22 @@
 const firstNumberState = document.querySelector('.first-number');
 const secondNumberState = document.querySelector('.second-number');
 
+const keypad = document.querySelector('.keypad');
+const keypadSign = document.querySelector('.keypad-sign');
+
 const result = document.querySelector('.result');
 const mathSign = document.querySelector('.math-sign');
 
 const arrayInput = document.querySelector('.array-inp');
 const arrayCalc = document.querySelector('.array-calc');
 
-const firstPrompt = document.querySelector('.first-prompt');
-const secondPrompt = document.querySelector('.second-prompt');
-
 const sum = document.querySelector('.sum');
 const subtract = document.querySelector('.subtract');
 const multiply = document.querySelector('.multiply');
 const divide = document.querySelector('.divide');
+
+let signState = false;
+let singSelect = '';
 
 //! array fox example ['sh', '62', 'glek', 64, -7, undefined, 4, 'grek', true, 84, 42]
 
@@ -75,25 +78,14 @@ arrayCalc.addEventListener('click', () => {
 });
 
 const bigBrainCalc = {
-  firstNumber: null,
-  secondNumber: null,
+  firstNumber: '',
+  secondNumber: '',
   newFirstNumber: null,
   newSecondNumber: null,
   resultNumber: null,
   errorMassage: `NuN`,
   ask() {
-    // old method
-    this.firstNumber = prompt('Enter first number');
-    this.secondNumber = prompt('Enter second number');
     this.newFirstNumber = +this.firstNumber;
-    this.newSecondNumber = +this.secondNumber;
-  },
-  askFirstNumber() {
-    this.firstNumber = prompt('Enter first number');
-    this.newFirstNumber = +this.firstNumber;
-  },
-  askSecondNumber() {
-    this.secondNumber = prompt('Enter second number');
     this.newSecondNumber = +this.secondNumber;
   },
   numberChecking() {
@@ -119,7 +111,7 @@ const bigBrainCalc = {
       if (this.newFirstNumber < this.newSecondNumber) {
         return confirm('are you sure about that?')
           ? (this.resultNumber = this.newFirstNumber - this.newSecondNumber)
-          : 'the result will be less than 0 and not acceptable to you';
+          : 'not acceptable';
       } else {
         return (this.resultNumber = this.newFirstNumber - this.newSecondNumber);
       }
@@ -136,22 +128,6 @@ const bigBrainCalc = {
     }
     return this.errorMassage;
   },
-  mathSelector() {
-    this.ask();
-    const operationType = prompt('Enter operation type: +, -, *, /');
-
-    if (operationType === '+') {
-      alert(this.sum());
-    } else if (operationType === '-') {
-      alert(this.subtract());
-    } else if (operationType === '/') {
-      alert(this.mul());
-    } else if (operationType === '*') {
-      alert(this.divide());
-    } else {
-      alert('invalid operation');
-    }
-  },
   minusPlusCheck() {
     this.resultNumber > 0
       ? (result.style.color = `hsl(120, 100%, ${Math.min(
@@ -163,33 +139,92 @@ const bigBrainCalc = {
           90
         )}%)`);
   },
+  default() {
+    firstNumberState.textContent = '';
+    secondNumberState.textContent = '';
+    result.textContent = '';
+    mathSign.textContent = '⁜';
+    signState = false;
+    singSelect = '';
+    this.firstNumber = '';
+    this.secondNumber = '';
+    this.newFirstNumber = null;
+    this.newSecondNumber = null;
+    this.resultNumber = null;
+    result.textContent = '?';
+  },
 };
 
-firstPrompt.addEventListener('click', () => {
-  bigBrainCalc.askFirstNumber();
-  firstNumberState.textContent = bigBrainCalc.firstNumber;
+function numPrint(numberX, event, numberState) {
+  //! Якщо будете дивитися код, Будь ласка спробуйте цю функцію нище, я хотів уникнути дубльювання, але ця функція чомусь не працює як потрібно, вона виводить тільки одне число. If you look at the code, please try this function below, I wanted to avoid duplication, but for some reason this function does not work as it should, it only outputs one number.
+  ///!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  numberX +=
+    numberX.includes(',') && ',' === event.target.textContent
+      ? ''
+      : event.target.textContent;
+  numberState.textContent = numberX;
+}
+
+keypad.addEventListener('click', (event) => {
+  const { target } = event;
+  if (event.target.classList.contains('num') && !signState) {
+    // numPrint(bigBrainCalc.firstNumber, event, firstNumberState); //! Мало бути так, але функція не працює коректно. It should be so, but the function does not work correctly
+    bigBrainCalc.firstNumber +=
+      bigBrainCalc.firstNumber.includes(',') && ',' === event.target.textContent
+        ? ''
+        : event.target.textContent;
+    firstNumberState.textContent = bigBrainCalc.firstNumber;
+  } else if (event.target.classList.contains('num') && signState) {
+    bigBrainCalc.secondNumber +=
+      bigBrainCalc.secondNumber.includes(',') &&
+      ',' === event.target.textContent
+        ? ''
+        : event.target.textContent;
+    secondNumberState.textContent = bigBrainCalc.secondNumber;
+  }
+  if (event.target.classList.contains('button--del')) {
+    !signState
+      ? ((bigBrainCalc.firstNumber = bigBrainCalc.firstNumber.slice(0, -1)),
+        (firstNumberState.textContent = bigBrainCalc.firstNumber))
+      : (bigBrainCalc.secondNumber = bigBrainCalc.secondNumber.slice(0, -1)),
+      (secondNumberState.textContent = bigBrainCalc.secondNumber);
+  }
+
+  // console.log(typeof bigBrainCalc.firstNumber, bigBrainCalc.firstNumber);
 });
-secondPrompt.addEventListener('click', () => {
-  bigBrainCalc.askSecondNumber();
-  secondNumberState.textContent = bigBrainCalc.secondNumber;
-});
-sum.addEventListener('click', () => {
-  result.textContent = bigBrainCalc.sum();
-  bigBrainCalc.minusPlusCheck();
-  mathSign.textContent = '+';
-});
-multiply.addEventListener('click', () => {
-  result.textContent = bigBrainCalc.mul();
-  bigBrainCalc.minusPlusCheck();
-  mathSign.textContent = '*';
-});
-subtract.addEventListener('click', () => {
-  result.textContent = bigBrainCalc.subtract();
-  bigBrainCalc.minusPlusCheck();
-  mathSign.textContent = '-';
-});
-divide.addEventListener('click', () => {
-  result.textContent = bigBrainCalc.divide();
-  bigBrainCalc.minusPlusCheck();
-  mathSign.textContent = '/';
+
+//! Як уникнути дублювання event.target.classList.contains('...') подібних штук??? How to avoid duplicating event.target.classList.contains('sign') stuff like that???
+
+keypadSign.addEventListener('click', (event) => {
+  if (event.target.classList.contains('sign--1')) {
+    singSelect = '+';
+  } else if (event.target.classList.contains('sign--2')) {
+    singSelect = '-';
+  } else if (event.target.classList.contains('sign--3')) {
+    singSelect = '×';
+  } else if (event.target.classList.contains('sign--4')) {
+    singSelect = '÷';
+  }
+  signState = true;
+  mathSign.textContent = singSelect;
+
+  // console.log(singSelect);
+  if (event.target.classList.contains('sign--5')) {
+    bigBrainCalc.ask();
+    if (singSelect === '+') {
+      result.textContent = bigBrainCalc.sum();
+    } else if (singSelect === '-') {
+      result.textContent = bigBrainCalc.subtract();
+    } else if (singSelect === '÷') {
+      result.textContent = bigBrainCalc.divide();
+    } else if (singSelect === '×') {
+      result.textContent = bigBrainCalc.mul();
+    } else {
+      alert('invalid operation');
+    }
+    bigBrainCalc.minusPlusCheck();
+  }
+  if (event.target.classList.contains('sign--6')) {
+    bigBrainCalc.default();
+  }
 });

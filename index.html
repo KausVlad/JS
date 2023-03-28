@@ -10,9 +10,9 @@
   <body>
     <div class="container">
       <div class="calculator">
-        <div class="inf first-number">?</div>
+        <div class="inf first-number"></div>
         <div class="inf math-sign">⁜</div>
-        <div class="inf second-number">?</div>
+        <div class="inf second-number"></div>
         <div class="inf result">?</div>
         <textarea
           type="text"
@@ -20,12 +20,28 @@
           class="array-inp"
         ></textarea>
         <div class="array-calc">Press to calculate Array</div>
-        <button class="btn bnt-big first-prompt">enter first number</button>
-        <button class="btn bnt-big second-prompt">enter second number</button>
-        <button class="btn btn-small sum">sum</button>
-        <button class="btn btn-small subtract">subtract</button>
-        <button class="btn btn-small multiply">multiply</button>
-        <button class="btn btn-small divide">divide</button>
+        <div class="keypad">
+          <button class="num button--7">7</button>
+          <button class="num button--8">8</button>
+          <button class="num button--9">9</button>
+          <button class="num button--4">4</button>
+          <button class="num button--5">5</button>
+          <button class="num button--6">7</button>
+          <button class="num button--1">1</button>
+          <button class="num button--2">2</button>
+          <button class="num button--3">3</button>
+          <button class="num button--comma">,</button>
+          <button class="num button--0">0</button>
+          <button class="button--del">DEL</button>
+        </div>
+        <div class="keypad-sign">
+          <button class="sign sign--1">+</button>
+          <button class="sign sign--2">-</button>
+          <button class="sign sign--3">×</button>
+          <button class="sign sign--4">÷</button>
+          <button class="sign--5">=</button>
+          <button class="sign--6">AC</button>
+        </div>
       </div>
     </div>
     <!-- <button onclick="incrementB()">accumulator Increment Button</button>
