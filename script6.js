@@ -5,6 +5,9 @@ const secondNumberState = document.querySelector('.second-number');
 const result = document.querySelector('.result');
 const mathSign = document.querySelector('.math-sign');
 
+const arrayInput = document.querySelector('.array-inp');
+const arrayCalc = document.querySelector('.array-calc');
+
 const firstPrompt = document.querySelector('.first-prompt');
 const secondPrompt = document.querySelector('.second-prompt');
 
@@ -13,7 +16,65 @@ const subtract = document.querySelector('.subtract');
 const multiply = document.querySelector('.multiply');
 const divide = document.querySelector('.divide');
 
-let bigBrainCalc = {
+//! array fox example ['sh', '62', 'glek', 64, -7, undefined, 4, 'grek', true, 84, 42]
+
+function onlyNumberArray() {
+  const newArray = [];
+  for (const iterator of arrayInput.value.replace(/["'\[\]]/g, '').split(',')) {
+    if (!isNaN(parseInt(iterator))) {
+      newArray.push(parseInt(iterator));
+    }
+  }
+  return newArray;
+}
+
+function maxArrayNumber(array) {
+  let max = array[0];
+  for (const iterator of array) {
+    if (iterator > max) {
+      max = iterator;
+    }
+  }
+  return ` |Max number: ${max}| `;
+}
+
+function minArrayNumber(array) {
+  let min = array[0];
+  for (const iterator of array) {
+    if (iterator < min) {
+      min = iterator;
+    }
+  }
+  return ` |Min number: ${min}| `;
+}
+
+function sumArray(array) {
+  let sum = 0;
+  for (const iterator of array) {
+    sum += iterator;
+  }
+  return ` |Sum Array ${sum}| `;
+}
+
+function medianArray(array) {
+  let sum = 0;
+  for (const iterator of array) {
+    sum += iterator;
+  }
+  return ` |Median ${(sum / array.length).toFixed(2)}| `;
+}
+
+arrayCalc.addEventListener('click', () => {
+  arrayCalc.textContent =
+    minArrayNumber(onlyNumberArray()) +
+    maxArrayNumber(onlyNumberArray()) +
+    sumArray(onlyNumberArray()) +
+    medianArray(onlyNumberArray());
+  console.log(arrayInput.value.replace(/["'\[\]]/g, '').split(','));
+  console.log(onlyNumberArray());
+});
+
+const bigBrainCalc = {
   firstNumber: null,
   secondNumber: null,
   newFirstNumber: null,

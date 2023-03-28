@@ -1,5 +1,8 @@
 @import 'reset';
 
+body {
+  font-family: sans-serif;
+}
 .container {
   height: 100vh;
   display: flex;
@@ -28,7 +31,7 @@
   grid-gap: 1rem 1rem;
   grid-template-areas:
     'first-number math-sign second-number result'
-    'info-panel info-panel info-panel info-panel-math'
+    'array-inp array-inp array-inp array-calc'
     'first-prompt first-prompt first-prompt sum'
     'first-prompt first-prompt first-prompt subtract'
     'second-prompt second-prompt second-prompt multiply'
@@ -52,13 +55,21 @@
   grid-area: result;
   border-radius: 0px 50px 0px 0px;
 }
-.info-panel {
-  grid-area: info-panel;
-  background: rgb(255, 255, 0);
+.array-inp {
+  padding: 0.5rem;
+  overflow-wrap: break-word;
+  grid-area: array-inp;
+  background: rgb(64, 255, 0);
+  font-weight: bolder;
 }
-.info-panel-math {
-  grid-area: info-panel-math;
-  background: blueviolet;
+.array-calc {
+  display: flex;
+  justify-content: center;
+  padding: 0.6rem;
+  grid-area: array-calc;
+  background: rgb(89, 255, 0);
+  font-weight: bolder;
+  cursor: pointer;
 }
 .first-prompt {
   grid-area: first-prompt;
@@ -109,7 +120,6 @@
   box-shadow: none;
 }
 .btn {
-  font-family: sans-serif;
   cursor: pointer;
   text-align: center;
   font-size: 1.6rem;
@@ -117,7 +127,6 @@
   text-transform: uppercase;
 }
 .inf {
-  font-family: sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
