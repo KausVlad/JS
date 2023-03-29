@@ -161,7 +161,6 @@ function numPrint(numberX, event, numberState) {
 }
 
 keypad.addEventListener('click', (event) => {
-  const { target } = event;
   if (event.target.classList.contains('num') && !signState) {
     // numPrint(bigBrainCalc.firstNumber, event, firstNumberState); //! Мало бути так, але функція не працює коректно. It should be so, but the function does not work correctly
     bigBrainCalc.firstNumber +=
