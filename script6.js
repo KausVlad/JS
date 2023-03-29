@@ -159,7 +159,7 @@ function numPrint(numberX, event, numberState) {
   //! Якщо будете дивитися код, Будь ласка спробуйте цю функцію нище, я хотів уникнути дубльювання, але ця функція чомусь не працює як потрібно, вона виводить тільки одне число. If you look at the code, please try this function below, I wanted to avoid duplication, but for some reason this function does not work as it should, it only outputs one number.
   ///!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   numberX +=
-    numberX.includes(',') && ',' === event.target.textContent
+    numberX.includes('.') && '.' === event.target.textContent
       ? ''
       : event.target.textContent;
   numberState.textContent = numberX;
@@ -170,13 +170,13 @@ keypad.addEventListener('click', (event) => {
   if (event.target.classList.contains('num') && !signState) {
     // numPrint(bigBrainCalc.firstNumber, event, firstNumberState); //! Мало бути так, але функція не працює коректно. It should be so, but the function does not work correctly
     bigBrainCalc.firstNumber +=
-      bigBrainCalc.firstNumber.includes(',') && ',' === event.target.textContent
+      bigBrainCalc.firstNumber.includes('.') && '.' === event.target.textContent
         ? ''
         : event.target.textContent;
     firstNumberState.textContent = bigBrainCalc.firstNumber;
   } else if (event.target.classList.contains('num') && signState) {
     bigBrainCalc.secondNumber +=
-      bigBrainCalc.secondNumber.includes(',') &&
+      bigBrainCalc.secondNumber.includes('.') &&
       ',' === event.target.textContent
         ? ''
         : event.target.textContent;
