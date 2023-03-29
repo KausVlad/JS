@@ -89,6 +89,7 @@ const bigBrainCalc = {
     this.newSecondNumber = +this.secondNumber;
   },
   numberChecking() {
+    //outdated
     return this.firstNumber === '' ||
       this.secondNumber === '' ||
       isNaN(Number(this.firstNumber + this.secondNumber)) ||
@@ -97,36 +98,30 @@ const bigBrainCalc = {
       : true;
   },
   sum() {
-    return this.numberChecking()
-      ? (this.resultNumber = this.newFirstNumber + this.newSecondNumber)
-      : this.errorMassage;
+    return (this.resultNumber =
+      this.newFirstNumber + this.newSecondNumber).toFixed(4);
   },
   mul() {
-    return this.numberChecking()
-      ? (this.resultNumber = this.newFirstNumber * this.newSecondNumber)
-      : this.errorMassage;
+    return (this.resultNumber =
+      this.newFirstNumber * this.newSecondNumber).toFixed(4);
   },
   subtract() {
-    if (this.numberChecking()) {
-      if (this.newFirstNumber < this.newSecondNumber) {
-        return confirm('are you sure about that?')
-          ? (this.resultNumber = this.newFirstNumber - this.newSecondNumber)
-          : 'not acceptable';
-      } else {
-        return (this.resultNumber = this.newFirstNumber - this.newSecondNumber);
-      }
+    if (this.newFirstNumber < this.newSecondNumber) {
+      return confirm('are you sure about that?')
+        ? (this.resultNumber =
+            this.newFirstNumber - this.newSecondNumber).toFixed(4)
+        : 'not acceptable';
+    } else {
+      return (this.resultNumber =
+        this.newFirstNumber - this.newSecondNumber).toFixed(4);
     }
-    return this.errorMassage;
   },
   divide() {
-    if (this.numberChecking()) {
-      return this.newSecondNumber === 0
-        ? 'cannot be divided by zero'
-        : (this.resultNumber = (
-            this.newFirstNumber / this.newSecondNumber
-          ).toFixed(4));
-    }
-    return this.errorMassage;
+    return this.newSecondNumber === 0
+      ? 'cannot be divided by zero'
+      : (this.resultNumber = (
+          this.newFirstNumber / this.newSecondNumber
+        ).toFixed(4));
   },
   minusPlusCheck() {
     this.resultNumber > 0
@@ -189,8 +184,6 @@ keypad.addEventListener('click', (event) => {
       : (bigBrainCalc.secondNumber = bigBrainCalc.secondNumber.slice(0, -1)),
       (secondNumberState.textContent = bigBrainCalc.secondNumber);
   }
-
-  // console.log(typeof bigBrainCalc.firstNumber, bigBrainCalc.firstNumber);
 });
 
 //! Як уникнути дублювання event.target.classList.contains('...') подібних штук??? How to avoid duplicating event.target.classList.contains('sign') stuff like that???
