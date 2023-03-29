@@ -177,7 +177,7 @@ keypad.addEventListener('click', (event) => {
   } else if (event.target.classList.contains('num') && signState) {
     bigBrainCalc.secondNumber +=
       bigBrainCalc.secondNumber.includes('.') &&
-      ',' === event.target.textContent
+      '.' === event.target.textContent
         ? ''
         : event.target.textContent;
     secondNumberState.textContent = bigBrainCalc.secondNumber;
