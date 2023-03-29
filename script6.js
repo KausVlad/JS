@@ -124,7 +124,7 @@ const bigBrainCalc = {
         ? 'cannot be divided by zero'
         : (this.resultNumber = (
             this.newFirstNumber / this.newSecondNumber
-          ).toFixed(2));
+          ).toFixed(4));
     }
     return this.errorMassage;
   },

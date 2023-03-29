@@ -107,28 +107,45 @@ body {
 }
 
 button {
+  border-radius: 0.3rem;
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
+  box-shadow: -2px 5px 10px 0px #053323;
+  transition: box-shadow 0.2s;
+}
+button:hover {
+  box-shadow: -2px 9px 10px 0px #085339;
+  top: -0.05rem;
+}
+button:active {
+  box-shadow: none;
+  top: 0.1rem;
 }
 
 .keypad {
   grid-area: keypad;
-  border-radius: 0px 0px 0px 50px;
+  border-radius: 0.3rem 0.3rem 0.3rem 50px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(4, 1fr);
   grid-gap: 1rem 1rem;
-  overflow: hidden;
+  font-size: 2rem;
 }
 .keypad button {
   background: green;
 }
 
+.button--dot {
+  border-radius: 0.3rem 0.3rem 0.3rem 50px;
+}
+
 .keypad-sign {
-  overflow: hidden;
+  font-size: 2rem;
   grid-area: keypad-sign;
-  border-radius: 0px 0px 50px 0px;
+  border-radius: 0.3rem 0.3rem 50px 0.3rem;
   display: grid;
   grid-gap: 1rem 1rem;
   grid-template-columns: repeat(2, 1fr);
@@ -137,6 +154,10 @@ button {
 }
 .keypad-sign button {
   background: rgb(87, 128, 0);
+}
+
+.sign--6 {
+  border-radius: 0.3rem 0.3rem 50px 0.3rem;
 }
 
 .sign--1 {
