@@ -22,7 +22,7 @@ function User(name, age) {
 }
 
 User.prototype.sayHello = function () {
-  return `Hi. My name is ${name} and I'm ${this.age} years old`;
+  return `Hi. My name is ${this.name} and I'm ${this.age} years old`;
 };
 
 const user = new User('Sherlock', 27);
